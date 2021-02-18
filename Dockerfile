@@ -14,7 +14,7 @@ RUN pip install -U pip && pip install -r requirements.txt
 COPY . .
 
 # Предустановка команды pytest и allure-отчёт
-ENTRYPOINT ["pytest", "--alluredir", "allure-report"]
+ENTRYPOINT ["pytest", "--alluredir", "allure-results"]
 
 # Этот параметр можно переопределить при СОЗДАНИИ контейнера
 CMD ["--login", "admin", "--passw", "password123"]
