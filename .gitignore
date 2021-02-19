@@ -8,5 +8,6 @@ venv/
 .pytest_cache/
 README.md
 allure-report/
+allure-results/
 __pycache__/
 .DS_Store
