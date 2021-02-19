@@ -10,7 +10,7 @@ pipeline {
         stage('Test') {
             steps {
                 sh '/usr/local/bin/docker run --name my_container tests --login ${LOGIN} --passw ${PASSW} -n ${NODES}'
-                sh '/usr/local/bin/docker cp my_container:/app/allure-results .'
+                sh '/usr/local/bin/docker cp my_container:/app/allure-report .'
             }
         }
     }
@@ -25,7 +25,7 @@ pipeline {
                         jdk: '',
                         properties: [],
                         reportBuildPolicy: 'ALWAYS',
-                        results: [[path: 'allure-results']]
+                        results: [[path: 'allure-report']]
                 ])
             }
 
