@@ -1,3 +1,4 @@
 #!/bin/bash
 
-/Users/lesya/Desktop/selenoid/allure/bin/allure serve allure-results
+/Applications/allure/bin/allure serve allure-results
+

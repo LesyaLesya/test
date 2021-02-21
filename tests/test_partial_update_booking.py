@@ -11,6 +11,7 @@ import conftest
 
 @allure.feature("PATCH - PartialUpdateBooking")
 @allure.story("Обновление части параметров сущности")
+@pytest.mark.all_tests
 @pytest.mark.positive
 @pytest.mark.parametrize("first, last", [("Peter", "Jackson"), ("Emma", "Star")])
 def test_patch_booking_update_part_fields(booker_api: conftest.ApiClient,
@@ -67,6 +68,7 @@ def test_patch_booking_update_part_fields(booker_api: conftest.ApiClient,
 
 @allure.feature("PATCH - PartialUpdateBooking")
 @allure.story("Обновление всех параметров сущности")
+@pytest.mark.all_tests
 @pytest.mark.positive
 def test_patch_booking_update_all_fields(booker_api: conftest.ApiClient) -> None:
     """
@@ -126,6 +128,7 @@ def test_patch_booking_update_all_fields(booker_api: conftest.ApiClient) -> None
 
 @allure.feature("PATCH - PartialUpdateBooking")
 @allure.story("Обновление сущности передачей пустого тела")
+@pytest.mark.all_tests
 @pytest.mark.positive
 def test_patch_booking_empty_body(booker_api: conftest.ApiClient) -> None:
     """
@@ -175,6 +178,7 @@ def test_patch_booking_empty_body(booker_api: conftest.ApiClient) -> None:
 
 @allure.feature("PATCH - PartialUpdateBooking")
 @allure.story("Обновление параметров несуществующей сущности")
+@pytest.mark.all_tests
 @pytest.mark.negative
 @pytest.mark.parametrize("param", [213123, "tests"])
 def test_patch_booking_invalid_id(booker_api: conftest.ApiClient,

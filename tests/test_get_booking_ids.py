@@ -10,6 +10,7 @@ import conftest
 
 @allure.feature("GET - GetBookingIds")
 @allure.story("Получение списка всех сущностей")
+@pytest.mark.all_tests
 @pytest.mark.positive
 def test_get_all_bookings(booker_api: conftest.ApiClient) -> None:
     """
@@ -31,6 +32,7 @@ def test_get_all_bookings(booker_api: conftest.ApiClient) -> None:
 
 @allure.feature("GET - GetBookingIds")
 @allure.story("Получение списка сущностей по существующему 'firstname'")
+@pytest.mark.all_tests
 @pytest.mark.positive
 @pytest.mark.parametrize("param", ["Sam", "Susan"])
 def test_get_bookings_by_firstname_positive(booker_api: conftest.ApiClient,
@@ -58,6 +60,7 @@ def test_get_bookings_by_firstname_positive(booker_api: conftest.ApiClient,
 
 @allure.feature("GET - GetBookingIds")
 @allure.story("Получение списка сущностей по несуществующему 'firstname'")
+@pytest.mark.all_tests
 @pytest.mark.negative
 @pytest.mark.parametrize("param", ["Тест", True, 13])
 def test_get_bookings_by_firstname_negative(booker_api: conftest.ApiClient,
@@ -86,6 +89,7 @@ def test_get_bookings_by_firstname_negative(booker_api: conftest.ApiClient,
 
 @allure.feature("GET - GetBookingIds")
 @allure.story("Получение списка сущностей по существующему 'lastname'")
+@pytest.mark.all_tests
 @pytest.mark.positive
 @pytest.mark.parametrize("param", ["Иванов", "Brown"])
 def test_get_bookings_by_lastname_positive(booker_api: conftest.ApiClient,
@@ -113,6 +117,7 @@ def test_get_bookings_by_lastname_positive(booker_api: conftest.ApiClient,
 
 @allure.feature("GET - GetBookingIds")
 @allure.story("Получение списка сущностей по несуществующему 'lastname'")
+@pytest.mark.all_tests
 @pytest.mark.negative
 @pytest.mark.parametrize("param", [False, 0, "'$$@*:;"])
 def test_get_bookings_by_lastname_negative(booker_api: conftest.ApiClient,
@@ -141,6 +146,7 @@ def test_get_bookings_by_lastname_negative(booker_api: conftest.ApiClient,
 
 @allure.feature("GET - GetBookingIds")
 @allure.story("Получение списка сущностей по существующим 'firstname' и 'lastname'")
+@pytest.mark.all_tests
 @pytest.mark.positive
 @pytest.mark.parametrize("first, last", [("Sam", "Иванов"), ("Susan", "Brown")])
 def test_get_bookings_by_fullname_positive(booker_api: conftest.ApiClient,
@@ -169,6 +175,7 @@ def test_get_bookings_by_fullname_positive(booker_api: conftest.ApiClient,
 
 @allure.feature("GET - GetBookingIds")
 @allure.story("Получение списка сущностей по несуществующим 'firstname' и 'lastname'")
+@pytest.mark.all_tests
 @pytest.mark.negative
 @pytest.mark.parametrize("first, last", [("Eric", "Thomas"), ("Test", "Jones")])
 def test_get_bookings_by_fullname_negative(booker_api: conftest.ApiClient,

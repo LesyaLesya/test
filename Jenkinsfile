@@ -8,10 +8,10 @@ pipeline {
                 sh '/usr/local/bin/docker build -t tests .'
             }
         }
-        stage('Test') {
+        stage('TestRun') {
             steps {
-                echo 'Running test in container'
-                sh '/usr/local/bin/docker run --name my_container tests --login ${LOGIN} --passw ${PASSW} -n ${NODES}'
+                echo 'Running tests in container'
+                sh '/usr/local/bin/docker run --name my_container tests --login ${LOGIN} --passw ${PASSW} -n ${NODES}' -m ${MARKER}
             }
         }
     }

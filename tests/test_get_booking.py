@@ -10,6 +10,7 @@ import conftest
 
 @allure.feature("GET - GetBooking")
 @allure.story("Получение существующей сущности по id")
+@pytest.mark.all_tests
 @pytest.mark.positive
 @pytest.mark.parametrize("param", [7, 5, 16])
 def test_get_booking_by_id_positive(booker_api: conftest.ApiClient,
@@ -34,6 +35,7 @@ def test_get_booking_by_id_positive(booker_api: conftest.ApiClient,
 
 @allure.feature("GET - GetBooking")
 @allure.story("Получение несуществующей сущности по id")
+@pytest.mark.all_tests
 @pytest.mark.negative
 @pytest.mark.parametrize("param", [10000, "hello", True, 0])
 def test_get_booking_by_id_negative(booker_api: conftest.ApiClient,

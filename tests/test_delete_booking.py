@@ -10,6 +10,7 @@ import conftest
 
 @allure.feature("DELETE - DeleteBooking")
 @allure.story("Удаление существующей сущности по id")
+@pytest.mark.all_tests
 @pytest.mark.positive
 @pytest.mark.parametrize("param", [-1, -2])
 def test_delete_booking_by_id_positive(booker_api: conftest.ApiClient,
@@ -36,6 +37,7 @@ def test_delete_booking_by_id_positive(booker_api: conftest.ApiClient,
 
 @allure.feature("DELETE - DeleteBooking")
 @allure.story("Удаление несуществующей сущности по id")
+@pytest.mark.all_tests
 @pytest.mark.negative
 @pytest.mark.parametrize("param", ["abc", 123112, False])
 def test_delete_booking_by_id_negative(booker_api: conftest.ApiClient,

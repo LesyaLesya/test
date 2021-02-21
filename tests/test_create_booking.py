@@ -11,6 +11,7 @@ import conftest
 
 @allure.feature("POST - CreateBooking")
 @allure.story("Создание сущности - позитивная проверка 'firstname'")
+@pytest.mark.all_tests
 @pytest.mark.positive
 @pytest.mark.parametrize("param", ["Susan", "Maria-Elena", "Имя Имя", ""])
 def test_post_booking_check_firstname_positive(booker_api: conftest.ApiClient,
@@ -48,6 +49,7 @@ def test_post_booking_check_firstname_positive(booker_api: conftest.ApiClient,
 
 @allure.feature("POST - CreateBooking")
 @allure.story("Создание сущности - негативная проверка 'firstname'")
+@pytest.mark.all_tests
 @pytest.mark.negative
 @pytest.mark.parametrize("param", [123, True])
 def test_post_booking_check_firstname_negative(booker_api: conftest.ApiClient,
@@ -82,6 +84,7 @@ def test_post_booking_check_firstname_negative(booker_api: conftest.ApiClient,
 
 @allure.feature("POST - CreateBooking")
 @allure.story("Создание сущности - проверка 'lastname'")
+@pytest.mark.all_tests
 @pytest.mark.positive
 @pytest.mark.parametrize("param", ["Иванов", "Brown", "W", "Last-name", ""])
 def test_post_booking_check_lastname(booker_api: conftest.ApiClient,
@@ -119,6 +122,7 @@ def test_post_booking_check_lastname(booker_api: conftest.ApiClient,
 
 @allure.feature("POST - CreateBooking")
 @allure.story("Создание сущности - проверка 'totalprice'")
+@pytest.mark.all_tests
 @pytest.mark.positive
 @pytest.mark.parametrize("param", [123, 1, 566778])
 def test_post_booking_check_totalprice(booker_api: conftest.ApiClient,
@@ -156,6 +160,7 @@ def test_post_booking_check_totalprice(booker_api: conftest.ApiClient,
 
 @allure.feature("POST - CreateBooking")
 @allure.story("Создание сущности - проверка 'depositpaid'")
+@pytest.mark.all_tests
 @pytest.mark.positive
 @pytest.mark.parametrize("param", [True, False])
 def test_post_booking_check_depositpaid(booker_api: conftest.ApiClient,
@@ -193,6 +198,7 @@ def test_post_booking_check_depositpaid(booker_api: conftest.ApiClient,
 
 @allure.feature("POST - CreateBooking")
 @allure.story("Создание сущности - позитивная проверка 'checkin'")
+@pytest.mark.all_tests
 @pytest.mark.positive
 @pytest.mark.parametrize("param", ["1900-11-11", "2021-02-11", "2030-06-01"])
 def test_post_booking_check_checkin_positive(booker_api: conftest.ApiClient,
@@ -230,6 +236,7 @@ def test_post_booking_check_checkin_positive(booker_api: conftest.ApiClient,
 
 @allure.feature("POST - CreateBooking")
 @allure.story("Создание сущности - негативная проверка 'checkin'")
+@pytest.mark.all_tests
 @pytest.mark.negative
 @pytest.mark.parametrize("param", ["00-00-00", "tests", " "])
 def test_post_booking_check_checkin_negative(booker_api: conftest.ApiClient,
@@ -267,6 +274,7 @@ def test_post_booking_check_checkin_negative(booker_api: conftest.ApiClient,
 
 @allure.feature("POST - CreateBooking")
 @allure.story("Создание сущности - позитивная проверка 'checkout'")
+@pytest.mark.all_tests
 @pytest.mark.positive
 @pytest.mark.parametrize("param", ["1871-01-01", "2021-02-11", "2041-12-31"])
 def test_post_booking_check_checkout(booker_api: conftest.ApiClient,
@@ -304,6 +312,7 @@ def test_post_booking_check_checkout(booker_api: conftest.ApiClient,
 
 @allure.feature("POST - CreateBooking")
 @allure.story("Создание сущности - проверка 'additionalneeds'")
+@pytest.mark.all_tests
 @pytest.mark.positive
 @pytest.mark.parametrize("param", ["что-то", "dinner, breakfast", ""])
 def test_post_booking_check_additionalneeds(booker_api: conftest.ApiClient,
@@ -341,6 +350,7 @@ def test_post_booking_check_additionalneeds(booker_api: conftest.ApiClient,
 
 @allure.feature("POST - CreateBooking")
 @allure.story("Создание сущности с пустым телом запроса")
+@pytest.mark.all_tests
 @pytest.mark.negative
 def test_post_booking_with_empty_body(booker_api: conftest.ApiClient) -> None:
     """
