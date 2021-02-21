@@ -86,7 +86,7 @@ def test_patch_all_fields(booker_api: conftest.ApiClient) -> None:
 
     with allure.step(f"Отправляем patch запрос с data - {data}"):
         response: requests.models.Response = \
-            booker_api.patch(path="21", data=json.dumps(data))
+            booker_api.patch(path="5", data=json.dumps(data))
 
     with allure.step("Проверяем, что код ответа 200"):
         assert response.status_code == 200, f"Код ответа - {response.status_code}"
