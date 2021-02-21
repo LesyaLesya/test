@@ -1,7 +1,6 @@
 """ Модуль с тестами delete запросов - DeleteBooking """
 
 
-from typing import Any
 import pytest
 import requests
 import allure  # type: ignore
@@ -13,8 +12,8 @@ import conftest
 @pytest.mark.all_tests
 @pytest.mark.positive
 @pytest.mark.parametrize("param", [-1, -2])
-def test_delete_booking_by_id_positive(booker_api: conftest.ApiClient,
-                                       param: int) -> None:
+def test_delete_by_id_positive(booker_api: conftest.ApiClient,
+                               param: int) -> None:
     """
     Тестовая функция для проверки вызова delete запроса.
     Проверяются позитивные варианты через параметризацию - существующие id.
@@ -24,12 +23,12 @@ def test_delete_booking_by_id_positive(booker_api: conftest.ApiClient,
     полученный вызовом get запроса на получение всех сущностей
 
     """
-    get_all_ids: requests.models.Response = booker_api.get(path="/booking")
-    entity_to_delete: int = get_all_ids.json()[param]['bookingid']
+    get_all_ids: requests.models.Response = booker_api.get()
+    id_to_delete: str = get_all_ids.json()[param]['bookingid']
 
-    with allure.step(f"Отправляем delete запрос с id {entity_to_delete}"):
+    with allure.step(f"Отправляем delete запрос с id {id_to_delete}"):
         response: requests.models.Response = \
-            booker_api.delete(path=f"/booking/{entity_to_delete}")
+            booker_api.delete(path=id_to_delete)
 
     with allure.step("Проверяем, что код ответа 201"):
         assert response.status_code == 201, f"Код ответа - {response.status_code}"
@@ -39,20 +38,20 @@ def test_delete_booking_by_id_positive(booker_api: conftest.ApiClient,
 @allure.story("Удаление несуществующей сущности по id")
 @pytest.mark.all_tests
 @pytest.mark.negative
-@pytest.mark.parametrize("param", ["abc", 123112, False])
-def test_delete_booking_by_id_negative(booker_api: conftest.ApiClient,
-                                       param: Any) -> None:
+@pytest.mark.parametrize("param", ["abc", "123112"])
+def test_delete_by_id_negative(booker_api: conftest.ApiClient,
+                               param: str) -> None:
     """
     Тестовая функция для проверки вызова delete запроса.
     Проверяются негативные варианты через параметризацию
-    - несуществующие id и неправильный тип данных.
+    - несуществующие id.
 
     :param booker_api: фикстура, создающая и возвращающая экземпляр класса ApiClient
     :param param: передаваемый в урле id
 
     """
     with allure.step(f"Отправляем delete запрос с id {param}"):
-        response: requests.models.Response = booker_api.delete(path=f"/booking/{param}")
+        response: requests.models.Response = booker_api.delete(path=param)
 
     with allure.step("Проверяем, что код ответа 405"):
         assert response.status_code == 405, f"Код ответа - {response.status_code}"

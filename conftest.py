@@ -1,5 +1,6 @@
 """ Модуль с фикстурами. """
 
+
 import json
 from typing import Any, Dict
 import pytest
@@ -40,7 +41,7 @@ class ApiClient:
     def __init__(self, host: str, login: str, passw: str) -> None:
         """
         Конструктор класса.
-        При инициализации также создается экземпляр объекта requests.Session(),
+        При инициализации также создается объект requests.Session(),
         вызывается метод для получения auth token.
 
         :param host: адрес хоста
@@ -54,7 +55,7 @@ class ApiClient:
         self.session = requests.Session()
         self.__get_token()
 
-    @allure.step("Получение токена")
+    @allure.step("Получение auth токена")
     def __get_token(self) -> str:
         """
         Метод передачи в post-запросе учетных данных
@@ -78,20 +79,18 @@ class ApiClient:
         :param params: параметры, передаваемые в урле
 
         """
-        url: str = f"{self.host}{path}"
+        url: str = f"{self.host}/booking/{path}"
         return self.session.get(url=url, params=params)
 
     @allure.step("Выполнение post запроса")
-    def post(self, path: str = "",
-             data: Dict[str, Any] = None) -> requests.models.Response:
+    def post(self, data: Dict[str, Any] = None) -> requests.models.Response:
         """
         Функция, возвращающая вызов post запроса к API.
 
-        :param path: адрес хоста
         :param data: передаваемое тело запроса
 
         """
-        url: str = f"{self.host}{path}"
+        url: str = f"{self.host}/booking"
         headers: Dict[str, str] = {"Content-Type": "application/json",
                                    "Accept": "application/json"}
         return self.session.post(url=url, headers=headers, data=data)
@@ -107,7 +106,7 @@ class ApiClient:
         :param data: передаваемое тело запроса
 
         """
-        url: str = f"{self.host}{path}"
+        url: str = f"{self.host}/booking/{path}"
         headers: Dict[str, str] = {"Content-Type": "application/json",
                                    "Accept": "application/json",
                                    "Cookie": f"token={self.__token}"}
@@ -124,7 +123,7 @@ class ApiClient:
         :param data: передаваемое тело запроса
 
         """
-        url: str = f"{self.host}{path}"
+        url: str = f"{self.host}/booking/{path}"
         headers: Dict[str, str] = {"Content-Type": "application/json",
                                    "Accept": "application/json",
                                    "Cookie": f"token={self.__token}"}
@@ -139,7 +138,7 @@ class ApiClient:
         :param path: адрес хоста
 
         """
-        url: str = f"{self.host}{path}"
+        url: str = f"{self.host}/booking/{path}"
         headers: Dict[str, str] = {"Content-Type": "application/json",
                                    "Cookie": f"token={self.__token}"}
         return self.session.delete(url=url, headers=headers)
