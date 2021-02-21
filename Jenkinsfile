@@ -11,7 +11,7 @@ pipeline {
         stage('TestRun') {
             steps {
                 echo 'Running tests in container'
-                sh '/usr/local/bin/docker run --name my_container tests --login ${LOGIN} --passw ${PASSW} -n ${NODES}' -m ${MARKER}
+                sh '/usr/local/bin/docker run --name my_container tests --login ${LOGIN} --passw ${PASSW} -n ${NODES} -m ${MARKER}'
             }
         }
     }
